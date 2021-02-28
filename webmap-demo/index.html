@@ -9,9 +9,11 @@
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <style>
-        #map {
-            width: 1220px;
-            height: 829px;
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
         </style>
         <title></title>
@@ -28,12 +30,12 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="data/SlCo_Boundry_0.js"></script>
-        <script src="data/Pedestrian_Crashes_2015_1.js"></script>
-        <script src="data/Pedestrian_Crashes_2016_2.js"></script>
-        <script src="data/Pedestrian_Crashes_2017_3.js"></script>
-        <script src="data/Pedestrian_Crashes_2018_4.js"></script>
-        <script src="data/Pedestrian_Crashes_2019_5.js"></script>
+        <script src="data/SlCo_Boundry_1.js"></script>
+        <script src="data/Pedestrian_Crashes_2015_2.js"></script>
+        <script src="data/Pedestrian_Crashes_2016_3.js"></script>
+        <script src="data/Pedestrian_Crashes_2017_4.js"></script>
+        <script src="data/Pedestrian_Crashes_2018_5.js"></script>
+        <script src="data/Pedestrian_Crashes_2019_6.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -49,7 +51,20 @@
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        function pop_SlCo_Boundry_0(feature, layer) {
+        map.createPane('pane_CartoLightNoLabels_0');
+        map.getPane('pane_CartoLightNoLabels_0').style.zIndex = 400;
+        var layer_CartoLightNoLabels_0 = L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {
+            pane: 'pane_CartoLightNoLabels_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_CartoLightNoLabels_0;
+        map.addLayer(layer_CartoLightNoLabels_0);
+        function pop_SlCo_Boundry_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -64,54 +79,68 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['COUNTYNBR'] !== null ? autolinker.link(feature.properties['COUNTYNBR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">COUNTYNBR</th>\
+                        <td>' + (feature.properties['COUNTYNBR'] !== null ? autolinker.link(feature.properties['COUNTYNBR'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ENTITYNBR'] !== null ? autolinker.link(feature.properties['ENTITYNBR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ENTITYNBR</th>\
+                        <td>' + (feature.properties['ENTITYNBR'] !== null ? autolinker.link(feature.properties['ENTITYNBR'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ENTITYYR'] !== null ? autolinker.link(feature.properties['ENTITYYR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ENTITYYR</th>\
+                        <td>' + (feature.properties['ENTITYYR'] !== null ? autolinker.link(feature.properties['ENTITYYR'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">NAME</th>\
+                        <td>' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FIPS'] !== null ? autolinker.link(feature.properties['FIPS'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">FIPS</th>\
+                        <td>' + (feature.properties['FIPS'] !== null ? autolinker.link(feature.properties['FIPS'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['STATEPLANE'] !== null ? autolinker.link(feature.properties['STATEPLANE'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">STATEPLANE</th>\
+                        <td>' + (feature.properties['STATEPLANE'] !== null ? autolinker.link(feature.properties['STATEPLANE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['POP_LASTCE'] !== null ? autolinker.link(feature.properties['POP_LASTCE'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">POP_LASTCE</th>\
+                        <td>' + (feature.properties['POP_LASTCE'] !== null ? autolinker.link(feature.properties['POP_LASTCE'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['POP_CURRES'] !== null ? autolinker.link(feature.properties['POP_CURRES'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">POP_CURRES</th>\
+                        <td>' + (feature.properties['POP_CURRES'] !== null ? autolinker.link(feature.properties['POP_CURRES'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['GlobalID'] !== null ? autolinker.link(feature.properties['GlobalID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">GlobalID</th>\
+                        <td>' + (feature.properties['GlobalID'] !== null ? autolinker.link(feature.properties['GlobalID'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FIPS_STR'] !== null ? autolinker.link(feature.properties['FIPS_STR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">FIPS_STR</th>\
+                        <td>' + (feature.properties['FIPS_STR'] !== null ? autolinker.link(feature.properties['FIPS_STR'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['COLOR4'] !== null ? autolinker.link(feature.properties['COLOR4'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">COLOR4</th>\
+                        <td>' + (feature.properties['COLOR4'] !== null ? autolinker.link(feature.properties['COLOR4'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">SHAPE_Leng</th>\
+                        <td>' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">SHAPE_Area</th>\
+                        <td>' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_SlCo_Boundry_0_0() {
+        function style_SlCo_Boundry_1_0() {
             return {
-                pane: 'pane_SlCo_Boundry_0',
+                pane: 'pane_SlCo_Boundry_1',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '10,5',
@@ -121,24 +150,24 @@
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(225,89,137,0.0)',
-                interactive: false,
+                interactive: true,
             }
         }
-        map.createPane('pane_SlCo_Boundry_0');
-        map.getPane('pane_SlCo_Boundry_0').style.zIndex = 400;
-        map.getPane('pane_SlCo_Boundry_0').style['mix-blend-mode'] = 'normal';
-        var layer_SlCo_Boundry_0 = new L.geoJson(json_SlCo_Boundry_0, {
+        map.createPane('pane_SlCo_Boundry_1');
+        map.getPane('pane_SlCo_Boundry_1').style.zIndex = 401;
+        map.getPane('pane_SlCo_Boundry_1').style['mix-blend-mode'] = 'normal';
+        var layer_SlCo_Boundry_1 = new L.geoJson(json_SlCo_Boundry_1, {
             attribution: '',
-            interactive: false,
-            dataVar: 'json_SlCo_Boundry_0',
-            layerName: 'layer_SlCo_Boundry_0',
-            pane: 'pane_SlCo_Boundry_0',
-            onEachFeature: pop_SlCo_Boundry_0,
-            style: style_SlCo_Boundry_0_0,
+            interactive: true,
+            dataVar: 'json_SlCo_Boundry_1',
+            layerName: 'layer_SlCo_Boundry_1',
+            pane: 'pane_SlCo_Boundry_1',
+            onEachFeature: pop_SlCo_Boundry_1,
+            style: style_SlCo_Boundry_1_0,
         });
-        bounds_group.addLayer(layer_SlCo_Boundry_0);
-        map.addLayer(layer_SlCo_Boundry_0);
-        function pop_Pedestrian_Crashes_2015_1(feature, layer) {
+        bounds_group.addLayer(layer_SlCo_Boundry_1);
+        map.addLayer(layer_SlCo_Boundry_1);
+        function pop_Pedestrian_Crashes_2015_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -153,21 +182,19 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">objectid</th>\
-                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">year</th>\
-                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Pedestrian_Crashes_2015_1_0() {
+        function style_Pedestrian_Crashes_2015_2_0() {
             return {
-                pane: 'pane_Pedestrian_Crashes_2015_1',
-                radius: 3.1999999999999997,
+                pane: 'pane_Pedestrian_Crashes_2015_2',
+                radius: 3.2,
                 opacity: 1,
                 color: 'rgba(227,26,28,1.0)',
                 dashArray: '',
@@ -180,27 +207,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Pedestrian_Crashes_2015_1');
-        map.getPane('pane_Pedestrian_Crashes_2015_1').style.zIndex = 401;
-        map.getPane('pane_Pedestrian_Crashes_2015_1').style['mix-blend-mode'] = 'normal';
-        var layer_Pedestrian_Crashes_2015_1 = new L.geoJson(json_Pedestrian_Crashes_2015_1, {
+        map.createPane('pane_Pedestrian_Crashes_2015_2');
+        map.getPane('pane_Pedestrian_Crashes_2015_2').style.zIndex = 402;
+        map.getPane('pane_Pedestrian_Crashes_2015_2').style['mix-blend-mode'] = 'normal';
+        var layer_Pedestrian_Crashes_2015_2 = new L.geoJson(json_Pedestrian_Crashes_2015_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pedestrian_Crashes_2015_1',
-            layerName: 'layer_Pedestrian_Crashes_2015_1',
-            pane: 'pane_Pedestrian_Crashes_2015_1',
-            onEachFeature: pop_Pedestrian_Crashes_2015_1,
+            dataVar: 'json_Pedestrian_Crashes_2015_2',
+            layerName: 'layer_Pedestrian_Crashes_2015_2',
+            pane: 'pane_Pedestrian_Crashes_2015_2',
+            onEachFeature: pop_Pedestrian_Crashes_2015_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Pedestrian_Crashes_2015_1_0(feature));
+                return L.circleMarker(latlng, style_Pedestrian_Crashes_2015_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Pedestrian_Crashes_2015_1);
-        map.addLayer(layer_Pedestrian_Crashes_2015_1);
-        function pop_Pedestrian_Crashes_2016_2(feature, layer) {
+        bounds_group.addLayer(layer_Pedestrian_Crashes_2015_2);
+        map.addLayer(layer_Pedestrian_Crashes_2015_2);
+        function pop_Pedestrian_Crashes_2016_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -215,21 +242,19 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">objectid</th>\
-                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">year</th>\
-                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Pedestrian_Crashes_2016_2_0() {
+        function style_Pedestrian_Crashes_2016_3_0() {
             return {
-                pane: 'pane_Pedestrian_Crashes_2016_2',
-                radius: 3.1999999999999997,
+                pane: 'pane_Pedestrian_Crashes_2016_3',
+                radius: 3.2,
                 opacity: 1,
                 color: 'rgba(255,127,0,1.0)',
                 dashArray: '',
@@ -242,27 +267,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Pedestrian_Crashes_2016_2');
-        map.getPane('pane_Pedestrian_Crashes_2016_2').style.zIndex = 402;
-        map.getPane('pane_Pedestrian_Crashes_2016_2').style['mix-blend-mode'] = 'normal';
-        var layer_Pedestrian_Crashes_2016_2 = new L.geoJson(json_Pedestrian_Crashes_2016_2, {
+        map.createPane('pane_Pedestrian_Crashes_2016_3');
+        map.getPane('pane_Pedestrian_Crashes_2016_3').style.zIndex = 403;
+        map.getPane('pane_Pedestrian_Crashes_2016_3').style['mix-blend-mode'] = 'normal';
+        var layer_Pedestrian_Crashes_2016_3 = new L.geoJson(json_Pedestrian_Crashes_2016_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pedestrian_Crashes_2016_2',
-            layerName: 'layer_Pedestrian_Crashes_2016_2',
-            pane: 'pane_Pedestrian_Crashes_2016_2',
-            onEachFeature: pop_Pedestrian_Crashes_2016_2,
+            dataVar: 'json_Pedestrian_Crashes_2016_3',
+            layerName: 'layer_Pedestrian_Crashes_2016_3',
+            pane: 'pane_Pedestrian_Crashes_2016_3',
+            onEachFeature: pop_Pedestrian_Crashes_2016_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Pedestrian_Crashes_2016_2_0(feature));
+                return L.circleMarker(latlng, style_Pedestrian_Crashes_2016_3_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Pedestrian_Crashes_2016_2);
-        map.addLayer(layer_Pedestrian_Crashes_2016_2);
-        function pop_Pedestrian_Crashes_2017_3(feature, layer) {
+        bounds_group.addLayer(layer_Pedestrian_Crashes_2016_3);
+        map.addLayer(layer_Pedestrian_Crashes_2016_3);
+        function pop_Pedestrian_Crashes_2017_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -277,21 +302,19 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">objectid</th>\
-                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">year</th>\
-                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Pedestrian_Crashes_2017_3_0() {
+        function style_Pedestrian_Crashes_2017_4_0() {
             return {
-                pane: 'pane_Pedestrian_Crashes_2017_3',
-                radius: 3.1999999999999997,
+                pane: 'pane_Pedestrian_Crashes_2017_4',
+                radius: 3.2,
                 opacity: 1,
                 color: 'rgba(254,239,23,1.0)',
                 dashArray: '',
@@ -304,27 +327,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Pedestrian_Crashes_2017_3');
-        map.getPane('pane_Pedestrian_Crashes_2017_3').style.zIndex = 403;
-        map.getPane('pane_Pedestrian_Crashes_2017_3').style['mix-blend-mode'] = 'normal';
-        var layer_Pedestrian_Crashes_2017_3 = new L.geoJson(json_Pedestrian_Crashes_2017_3, {
+        map.createPane('pane_Pedestrian_Crashes_2017_4');
+        map.getPane('pane_Pedestrian_Crashes_2017_4').style.zIndex = 404;
+        map.getPane('pane_Pedestrian_Crashes_2017_4').style['mix-blend-mode'] = 'normal';
+        var layer_Pedestrian_Crashes_2017_4 = new L.geoJson(json_Pedestrian_Crashes_2017_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pedestrian_Crashes_2017_3',
-            layerName: 'layer_Pedestrian_Crashes_2017_3',
-            pane: 'pane_Pedestrian_Crashes_2017_3',
-            onEachFeature: pop_Pedestrian_Crashes_2017_3,
+            dataVar: 'json_Pedestrian_Crashes_2017_4',
+            layerName: 'layer_Pedestrian_Crashes_2017_4',
+            pane: 'pane_Pedestrian_Crashes_2017_4',
+            onEachFeature: pop_Pedestrian_Crashes_2017_4,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Pedestrian_Crashes_2017_3_0(feature));
+                return L.circleMarker(latlng, style_Pedestrian_Crashes_2017_4_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Pedestrian_Crashes_2017_3);
-        map.addLayer(layer_Pedestrian_Crashes_2017_3);
-        function pop_Pedestrian_Crashes_2018_4(feature, layer) {
+        bounds_group.addLayer(layer_Pedestrian_Crashes_2017_4);
+        map.addLayer(layer_Pedestrian_Crashes_2017_4);
+        function pop_Pedestrian_Crashes_2018_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -339,20 +362,18 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">objectid</th>\
-                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">year</th>\
-                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Pedestrian_Crashes_2018_4_0() {
+        function style_Pedestrian_Crashes_2018_5_0() {
             return {
-                pane: 'pane_Pedestrian_Crashes_2018_4',
+                pane: 'pane_Pedestrian_Crashes_2018_5',
                 radius: 3.2,
                 opacity: 1,
                 color: 'rgba(51,160,44,1.0)',
@@ -366,27 +387,27 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Pedestrian_Crashes_2018_4');
-        map.getPane('pane_Pedestrian_Crashes_2018_4').style.zIndex = 404;
-        map.getPane('pane_Pedestrian_Crashes_2018_4').style['mix-blend-mode'] = 'normal';
-        var layer_Pedestrian_Crashes_2018_4 = new L.geoJson(json_Pedestrian_Crashes_2018_4, {
+        map.createPane('pane_Pedestrian_Crashes_2018_5');
+        map.getPane('pane_Pedestrian_Crashes_2018_5').style.zIndex = 405;
+        map.getPane('pane_Pedestrian_Crashes_2018_5').style['mix-blend-mode'] = 'normal';
+        var layer_Pedestrian_Crashes_2018_5 = new L.geoJson(json_Pedestrian_Crashes_2018_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pedestrian_Crashes_2018_4',
-            layerName: 'layer_Pedestrian_Crashes_2018_4',
-            pane: 'pane_Pedestrian_Crashes_2018_4',
-            onEachFeature: pop_Pedestrian_Crashes_2018_4,
+            dataVar: 'json_Pedestrian_Crashes_2018_5',
+            layerName: 'layer_Pedestrian_Crashes_2018_5',
+            pane: 'pane_Pedestrian_Crashes_2018_5',
+            onEachFeature: pop_Pedestrian_Crashes_2018_5,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Pedestrian_Crashes_2018_4_0(feature));
+                return L.circleMarker(latlng, style_Pedestrian_Crashes_2018_5_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Pedestrian_Crashes_2018_4);
-        map.addLayer(layer_Pedestrian_Crashes_2018_4);
-        function pop_Pedestrian_Crashes_2019_5(feature, layer) {
+        bounds_group.addLayer(layer_Pedestrian_Crashes_2018_5);
+        map.addLayer(layer_Pedestrian_Crashes_2018_5);
+        function pop_Pedestrian_Crashes_2019_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -401,20 +422,18 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">objectid</th>\
-                        <td>' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">year</th>\
-                        <td>' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['year'] !== null ? autolinker.link(feature.properties['year'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Pedestrian_Crashes_2019_5_0() {
+        function style_Pedestrian_Crashes_2019_6_0() {
             return {
-                pane: 'pane_Pedestrian_Crashes_2019_5',
+                pane: 'pane_Pedestrian_Crashes_2019_6',
                 radius: 3.2,
                 opacity: 1,
                 color: 'rgba(31,120,180,1.0)',
@@ -428,28 +447,28 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Pedestrian_Crashes_2019_5');
-        map.getPane('pane_Pedestrian_Crashes_2019_5').style.zIndex = 405;
-        map.getPane('pane_Pedestrian_Crashes_2019_5').style['mix-blend-mode'] = 'normal';
-        var layer_Pedestrian_Crashes_2019_5 = new L.geoJson(json_Pedestrian_Crashes_2019_5, {
+        map.createPane('pane_Pedestrian_Crashes_2019_6');
+        map.getPane('pane_Pedestrian_Crashes_2019_6').style.zIndex = 406;
+        map.getPane('pane_Pedestrian_Crashes_2019_6').style['mix-blend-mode'] = 'normal';
+        var layer_Pedestrian_Crashes_2019_6 = new L.geoJson(json_Pedestrian_Crashes_2019_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Pedestrian_Crashes_2019_5',
-            layerName: 'layer_Pedestrian_Crashes_2019_5',
-            pane: 'pane_Pedestrian_Crashes_2019_5',
-            onEachFeature: pop_Pedestrian_Crashes_2019_5,
+            dataVar: 'json_Pedestrian_Crashes_2019_6',
+            layerName: 'layer_Pedestrian_Crashes_2019_6',
+            pane: 'pane_Pedestrian_Crashes_2019_6',
+            onEachFeature: pop_Pedestrian_Crashes_2019_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Pedestrian_Crashes_2019_5_0(feature));
+                return L.circleMarker(latlng, style_Pedestrian_Crashes_2019_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Pedestrian_Crashes_2019_5);
-        map.addLayer(layer_Pedestrian_Crashes_2019_5);
+        bounds_group.addLayer(layer_Pedestrian_Crashes_2019_6);
+        map.addLayer(layer_Pedestrian_Crashes_2019_6);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Pedestrian_Crashes_2019_5.png" /> Pedestrian_Crashes_2019': layer_Pedestrian_Crashes_2019_5,'<img src="legend/Pedestrian_Crashes_2018_4.png" /> Pedestrian_Crashes_2018': layer_Pedestrian_Crashes_2018_4,'<img src="legend/Pedestrian_Crashes_2017_3.png" /> Pedestrian_Crashes_2017': layer_Pedestrian_Crashes_2017_3,'<img src="legend/Pedestrian_Crashes_2016_2.png" /> Pedestrian_Crashes_2016': layer_Pedestrian_Crashes_2016_2,'<img src="legend/Pedestrian_Crashes_2015_1.png" /> Pedestrian_Crashes_2015': layer_Pedestrian_Crashes_2015_1,'<img src="legend/SlCo_Boundry_0.png" /> SlCo_Boundry': layer_SlCo_Boundry_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Pedestrian_Crashes_2019_6.png" /> Pedestrian_Crashes_2019': layer_Pedestrian_Crashes_2019_6,'<img src="legend/Pedestrian_Crashes_2018_5.png" /> Pedestrian_Crashes_2018': layer_Pedestrian_Crashes_2018_5,'<img src="legend/Pedestrian_Crashes_2017_4.png" /> Pedestrian_Crashes_2017': layer_Pedestrian_Crashes_2017_4,'<img src="legend/Pedestrian_Crashes_2016_3.png" /> Pedestrian_Crashes_2016': layer_Pedestrian_Crashes_2016_3,'<img src="legend/Pedestrian_Crashes_2015_2.png" /> Pedestrian_Crashes_2015': layer_Pedestrian_Crashes_2015_2,'<img src="legend/SlCo_Boundry_1.png" /> SlCo_Boundry': layer_SlCo_Boundry_1,"Carto Light No Labels": layer_CartoLightNoLabels_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
